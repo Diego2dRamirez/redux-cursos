@@ -4,3 +4,7 @@ html{
   background-color: #242424;
   color: white;
 }
+
+.App img {
+  margin-bottom: 3rem;
+}

@@ -5,12 +5,12 @@ import { StarOutlined } from '@ant-design/icons';
 const { Meta } = Card
 
 
-function PokemonCard() {
+function PokemonCard({name}) {
   return (
     <>
       <Card
         extra={<StarOutlined />}
-        title='Ditto'
+        title={name}
         cover={
           <img src='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png' alt='Ditto' />
         }
