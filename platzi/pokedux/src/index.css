@@ -1,5 +1,6 @@
 @import "antd/dist/antd.css";
 
-
-
-/*   background-color: #242424; */
+html{
+  background-color: #242424;
+  color: white;
+}
