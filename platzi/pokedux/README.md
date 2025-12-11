@@ -1,16 +1,84 @@
-# React + Vite
+# CURSO DE REDUX 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+ *Redux para gestionar el estado global*
 
-Currently, two official plugins are available:
+## Instalación
+`
+```bash
+  npm i redux react-redux
+  pnpm add redux react-redux
+```
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Configuración 
 
-## React Compiler
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+### ¿Cómo estructurar las acciones de Redux?
+- Una vez instaladas las librerías, es momento de estructurar las acciones:
 
-## Expanding the ESLint configuration
+- Crear el directorio de actions: Dentro de la carpeta source, genera una carpeta llamada actions.
+Definir los tipos de acciones: Es recomendable usar constantes para exportar los tipos (types) de acciones. Esto previene errores tipográficos. Por ejemplo:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+/actions/Types.js
+```js
+export const SET_POKEMONS = "SET_POKEMONS";
+```
+
+- Crear los action creators: Los action creators son funciones que retornan un objeto action.
+
+/actions/index.js
+```js
+import { SET_POKEMONS } from './types';
+
+export const setPokemons = (payload) => ({
+  type: SET_POKEMONS,
+  payload,
+});
+```
+
+### ¿Cómo crear un reducer en Redux?
+
+- Los reducers son funciones puras que determinan cómo cambia el estado en respuesta a una acción.
+
+/reducers/pokemon.js
+```js
+import { SET_POKEMONS } from '../actions/types'
+
+// Definir el estado inicial: Usar un objeto clave-valor.
+const initialState = {
+  pokemons: [],
+};
+
+// Crear el reducer: Usa una función switch para manejar diferentes tipos de acciones.
+export const pokemonsReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case SET_POKEMONS:
+      return { ...state, pokemons: action.payload }
+    default:
+      return state;
+  }
+}
+```
+
+### ¿Cómo integrar el Store de Redux en React?
+
+main.jsx
+```jsx
+import { Provider } from 'react-redux'
+import { legacy_createStore as createStore } from 'redux'
+import { pokemonsReducer } from './components/reducers/pokemon.js'
+
+const store = createStore(pokemonsReducer)
+
+
+
+createRoot(document.getElementById('root')).render(
+  <StrictMode>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </StrictMode>,
+)
+```
+
+### ¿Por qué usar Redux?
+Redux proporciona un manejo del estado centralizado, ayudando a desarrollar aplicaciones más predecibles, fáciles de depurar y probar. Si bien este tutorial cubre lo esencial, recuerda que Redux tiene otras formas, como el **Redux Toolkit**, que la documentación oficial recomeinda usar.

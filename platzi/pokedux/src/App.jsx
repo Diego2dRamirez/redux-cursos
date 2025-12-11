@@ -5,15 +5,19 @@ import logo from './components/statics/logo.svg'
 import { useEffect } from "react"
 import { getPokemon } from "./components/api"
 import { useState } from "react"
+import { useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
+import { setPokemons } from "./components/actions"
 
 function App() {
 
-  const [pokemons, setPokemons] = useState([]);
+  const pokemons = useSelector( state => state.pokemons);
+  const dispatch = useDispatch()
 
   useEffect(() => {
     const fetchPokemons = async () => {
       const pokemonsRes = await getPokemon()
-      setPokemons(pokemonsRes)
+      dispatch(setPokemons(pokemonsRes))
     }
     fetchPokemons()
   }, [])
