@@ -6,7 +6,9 @@ import { Provider } from 'react-redux'
 import { legacy_createStore as createStore } from 'redux'
 import { pokemonsReducer } from './components/reducers/pokemon.js'
 
-const store = createStore(pokemonsReducer)
+const store = createStore(pokemonsReducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+)
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
