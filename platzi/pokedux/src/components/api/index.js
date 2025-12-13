@@ -6,6 +6,12 @@ export const getPokemon = () => {
     .catch(err => console.error(err))
 }
 
+export const getPokemonDetails = (pokemon) => {
+  return fetch(pokemon.url)
+    .then(res => res.json())
+    .catch(err => console.error(err))
+}
+
 // WITH AXIOS 
 // export const getPokemon = () => {
 //   return axios
@@ -13,3 +19,9 @@ export const getPokemon = () => {
 //     .then((res) => res.data.results)
 //     .catch((err) => console.log(err));
 // };
+
+// export const getPokemonDetails = (pokemon) => {
+//   return axios.get(pokemon.url)
+//   .then(res => res.data)
+//   .catch((err) => console.log(err));
+// }

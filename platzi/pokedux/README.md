@@ -163,3 +163,8 @@ const store = createStore(
 
 Con esta práctica, observamos cómo agregar y modificar los datos antes de llegar al reducer, permitiéndonos personalizar la experiencia del usuario.
 
+## Promise.all
+
+Para asociar las imágenes a los Pokémon, primero necesitamos extraer los detalles individuales utilizando un método de obtención asíncrona.
+
+Uso de Promise.all: Implementamos promise.all() para enviar múltiples solicitudes simultáneas y recibir las respuestas de cada una de manera eficiente. Esta técnica optimiza el tiempo de obtención al resolver todas las peticiones en paralelo

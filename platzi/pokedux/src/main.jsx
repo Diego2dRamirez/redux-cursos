@@ -9,7 +9,7 @@ import { featuring, logger } from './middlewares/index.js'
 
 
 const composedEnhancers = compose(
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(), applyMiddleware(logger,featuring)
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(), applyMiddleware(logger)
 )
 
 const store = createStore(pokemonsReducer,
