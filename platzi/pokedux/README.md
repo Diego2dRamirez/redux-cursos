@@ -168,3 +168,66 @@ Con esta práctica, observamos cómo agregar y modificar los datos antes de lleg
 Para asociar las imágenes a los Pokémon, primero necesitamos extraer los detalles individuales utilizando un método de obtención asíncrona.
 
 Uso de Promise.all: Implementamos promise.all() para enviar múltiples solicitudes simultáneas y recibir las respuestas de cada una de manera eficiente. Esta técnica optimiza el tiempo de obtención al resolver todas las peticiones en paralelo
+
+## Redux Thunk
+
+### ¿Cómo separar responsabilidades en tu aplicación con Redux Thunk?
+
+Al manejar aplicaciones complejas, es crucial separar responsabilidades para mantener un código limpio y manejable. Aquí es donde entra en juego Redux Thunk, una solución que permite gestionar acciones asíncronas dentro de Redux. En este artículo, aprenderás cómo implementar esta herramienta en tu aplicación de React, separando la lógica del componente y llevando las responsabilidades al Action Creator.
+
+### ¿Qué es Redux Thunk?
+
+Redux Thunk es un middleware para Redux que permite escribir Action Creators que retornen funciones en lugar de objetos. Estas funciones pueden ejecutarse de manera asíncrona, lo cual es perfecto para realizar tareas como obtener detalles de una API, esperar por ciertas condiciones o retrasar la ejecución de una acción.
+
+Beneficios de usar Redux Thunk:
+
+- **Asincronismo:** Puedes realizar acciones asíncronas, esenciales para llamadas API.
+- **Control sobre el flujo:** Permite hacer dispatch de acciones solo cuando se cumplen ciertas condiciones.
+
+### ¿Cómo implementar Redux Thunk en tu aplicación?
+
+Vamos a hacer una implementación práctica de Redux Thunk para manejar la obtención de detalles de Pokémon en una aplicación React-Redux.
+
+*Paso 1: Instalación de Redux Thunk*
+Primero, debes instalar Redux Thunk en tu proyecto. Usa el siguiente comando:
+
+```bash
+  npm install redux-thunk
+  pnpm add redux-thunk
+```
+
+*Paso 2: Creación de un Action Creator asíncrono*
+
+Crea un nuevo Action Creator llamado getPokemonWithDetails, que se encargará de obtener detalles adicionales de los Pokémon desde una API.
+
+```js
+export const getPokemonWithDetails = (pokemons = []) => async (dispatch) => {
+  const pokemonDetailed = await Promise.all(
+    pokemons.map(pokemon => getPokemonDetails(pokemon))
+  )
+  dispatch(setPokemons(pokemonDetailed))
+} 
+```
+
+**¿Cómo integrar Redux Thunk en el Store de Redux?**
+El siguiente paso es agregar el middleware Thunk en el archivo del Store, usualmente index.js.
+
+*Paso 3: Configuración del Store*
+Integra el middleware Redux Thunk para manejar acciones asíncronas:
+
+```js
+import { createStore, applyMiddleware, compose } from 'redux';
+import thunk from 'redux-thunk';
+import rootReducer from './reducers';
+
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)));
+
+export default store;
+```
+
+### ¿Qué problemas soluciona Redux Thunk?
+
+- **Optimización del flujo de datos:** Permite realizar funciones complejas como obtener datos en respuestas asíncronas.
+- **Escalabilidad:** Divide la lógica en secciones más pequeñas y manejables, incrementando la eficiencia del código.
+- **Legibilidad:** Mejora la claridad al separar el código del componente principal y delegar funciones específicas a los Action Creators.
