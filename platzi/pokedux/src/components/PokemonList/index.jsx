@@ -12,9 +12,12 @@ function PokemonList({ pokemons = Array(10).fill('') }) {
             <PokemonCard
               name={pokemon.name}
               key={pokemon.name}
-              image={pokemon.sprites.front_default} 
+              image={pokemon.sprites.front_default}
               abilities={pokemon.abilities}
-              />
+              types={pokemon.types}
+              id={pokemon.id}
+              favorite={pokemon.favorite}
+            />
           )
         })
       }

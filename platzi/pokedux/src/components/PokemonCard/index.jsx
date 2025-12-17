@@ -1,18 +1,26 @@
 import React from 'react'
 import { Card } from 'antd';
-import { StarOutlined } from '@ant-design/icons';
+import { StarButton } from './StarButton';
+import { useDispatch } from 'react-redux';
+import { setFavorite } from '../actions';
 
 const { Meta } = Card
 
 
-function PokemonCard({ name, image, abilities }) {
+function PokemonCard({ name, image, abilities, types, id, favorite }) {
+  const dispatch = useDispatch();
 
-  const allAbilities = abilities.map(ability => ability.ability.name).join(', ')
+  const allAbilities = abilities.map(ability => ability.ability.name).join(', ');
+  const typesString = types.map(type => type.type.name).join(', ')
+
+  const handleOnFavorite = () => [
+    dispatch(setFavorite({ pokemonId: id }))
+  ]
 
   return (
     <>
       <Card
-        extra={<StarOutlined />}
+        extra={<StarButton isFavorite={favorite} onClick={handleOnFavorite} />}
         title={name}
         cover={
           <img src={image} alt={name} />
@@ -22,6 +30,7 @@ function PokemonCard({ name, image, abilities }) {
         <Meta
           description={allAbilities}
         />
+        <Meta description={typesString} className='red-1'/>
       </Card>
     </>
   )
@@ -29,3 +38,4 @@ function PokemonCard({ name, image, abilities }) {
 
 
 export { PokemonCard };
+// Funcionalidad de Favoritos en Aplicación de Pokémon con Redux
