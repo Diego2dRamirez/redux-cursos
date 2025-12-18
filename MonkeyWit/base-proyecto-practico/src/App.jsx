@@ -1,10 +1,9 @@
-import { Alert } from "antd";
+import { Navbar } from "./components/Navbar";
 
 function App() {
   return (
     <>
-      <h1>Hello React JS + Redux Toolkit</h1>
-      <Alert title="Ant Design install" type="success" showIcon />
+      <Navbar />
     </>
   )
 };

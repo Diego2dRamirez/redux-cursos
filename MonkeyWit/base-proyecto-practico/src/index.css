@@ -2,3 +2,17 @@ html {
   background-color: #242424;
   color: #fff;
 }
+
+.ant-tabs-tab {
+  margin: 1rem;
+}
+
+.ant-tabs-tab .ant-tabs-tab-btn {
+  color: orange;
+}
+
+.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+  padding: .5rem;
+  color: red !important;
+  outline-style: dotted;
+}
