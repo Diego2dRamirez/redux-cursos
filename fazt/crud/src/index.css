@@ -2,3 +2,26 @@ html {
   background: #242424;
   color: #fff;
 }
+
+.container-count {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  align-items: center;
+}
+
+.taskCount {
+  color: cyan !important;
+  text-align: center;
+  text-shadow: .5px 5px red;
+  margin: 0;
+}
+
+.create-task {
+  border: 1px solid cyan;
+  color: #fff;
+  padding: 5px;
+  border-radius: 5px;
+  box-shadow: 3px 3px 5px white;
+
+}

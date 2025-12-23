@@ -4,11 +4,13 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addTaks } from '../../features/todos/todosSlice';
 import { v4 as uuid } from 'uuid'
+import { useNavigate } from 'react-router-dom';
 
 const { TextArea } = Input;
 
 function Form() {
   const dispatch = useDispatch()
+  const navigate = useNavigate();
 
   const [task, setTask] = useState({
     title: '',
@@ -33,6 +35,7 @@ function Form() {
       id: uuid(),
       completed: false
     }))
+    navigate('/')
   }
 
   return (
