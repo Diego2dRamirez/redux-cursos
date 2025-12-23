@@ -24,10 +24,17 @@ export const todosSlice = createSlice({
     addTaks: (state, action) => {
       state.tasks.push(action.payload);
       // state.tasks = [...state.tasks, action.payload]
+    },
+    deleteTask: (state, action) => {
+      const taskFound = state.tasks.find(task => task.id === action.payload);
+
+      if (taskFound) {
+        state.tasks.splice(state.tasks.indexOf(taskFound), 1)
+      }
     }
   },
 });
 
-export const { addTaks } = todosSlice.actions;
+export const { addTaks, deleteTask } = todosSlice.actions;
 
 export default todosSlice.reducer;
