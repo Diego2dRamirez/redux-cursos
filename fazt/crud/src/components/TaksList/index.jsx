@@ -30,6 +30,8 @@ function TasksList() {
             <article key={todo.id}>
               <Title type="warning" level={3}>{todo.title}</Title>
               <Paragraph style={{ color: "#fff" }}>{todo.description}</Paragraph>
+
+              <Link to={`/edit-task/${todo.id}`}>Edit</Link>
               <Button variant="solid" color="danger" onClick={() => handleDelete(todo.id)}>
                 delete
               </Button>

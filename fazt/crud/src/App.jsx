@@ -11,7 +11,7 @@ function App() {
 
   return (
     <HashRouter future={{ v7_relativeSplatPath: true, v7_startTransition: true }}>
-      
+
       <Title type="success" style={{ textDecoration: "underline", fontStyle: "italic", textAlign: 'center' }}>
         CRUD REACT JS + REDUX-TOOLKIT
       </Title>
@@ -19,6 +19,7 @@ function App() {
       <Routes>
         <Route path="/" element={<TasksList />} />
         <Route path="/create-task" element={<Form />} />
+        <Route path="/edit-task/:id" element={<Form />} />
       </Routes>
 
     </HashRouter>
